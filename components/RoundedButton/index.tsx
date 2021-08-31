@@ -2,14 +2,13 @@ import React from "react";
 import {
   StyleProp,
   TextStyle,
-  ViewStyle,
   StyleSheet,
   TouchableOpacity,
   TouchableOpacityProps,
+  Text,
 } from "react-native";
-import { View, Text } from "react-native";
 
-interface RoundedButtonProps {
+interface RoundedButtonProps extends TouchableOpacityProps {
   style?: StyleProp<TouchableOpacityProps>;
   textStyle?: StyleProp<TextStyle>;
   size?: number;
@@ -21,9 +20,10 @@ const RoundedButton = ({
   textStyle,
   size = 125,
   title,
+  ...touchableProps
 }: RoundedButtonProps) => {
   return (
-    <TouchableOpacity style={[styles(size).radius, style]}>
+    <TouchableOpacity style={[styles(size).radius, style]} {...touchableProps}>
       <Text style={[styles(size).text, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
